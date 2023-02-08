@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div></div>
 </template>
 
@@ -18,4 +18,4 @@ export default {
 </script>
 
 <style scoped>
-</style> -->
+</style>
