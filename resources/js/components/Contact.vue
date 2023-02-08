@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
         <h1>Contact page</h1>
     </div>
@@ -26,4 +26,4 @@ export default {
 
 <style scoped>
 
-</style>
+</style> -->

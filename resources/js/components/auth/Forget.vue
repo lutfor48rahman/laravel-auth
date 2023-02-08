@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
    <div>
         <div class="row justify-content-center">
                             <div class="col-lg-7">
@@ -48,4 +48,4 @@ export default {
 
 <style lang="scss" scoped>
 
-</style>
+</style> -->
