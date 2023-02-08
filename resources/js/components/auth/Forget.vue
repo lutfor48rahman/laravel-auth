@@ -16,7 +16,7 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <router-link class="small" to="/login">Back login</router-link>
+                                                <router-link class="small" to="/">Back login</router-link>
                                             </div>
                                         </form>
                                     </div>

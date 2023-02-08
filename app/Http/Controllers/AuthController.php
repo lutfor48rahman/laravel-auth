@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use DB;
+use DB,Mail;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Carbon;
 
 class AuthController extends Controller
 {
@@ -51,9 +55,63 @@ class AuthController extends Controller
         $data['password'] = Hash::make($request->password);
         DB::table('users')->insert($data);
 
+        
         // return response('create successfully user');
 
         return $this->login($request);
+    }
+
+
+    public function sendVerifyMail($email){
+        if(auth()->user()){
+            $user = USer::where('email',$email)->get();
+            if(count($user) > 0){
+                
+                $random = Str::random(40);
+                $domain = URL::to('/');
+                $url = $domain.'/verify-mail/'.$random;
+
+                $data['url'] = $url;
+                $data['email'] = $email;
+                $data['title'] = 'Email Verification';
+                $data['body'] = 'Please click here to below to verify your mail.';
+
+                Mail::send('verify',['data'=>$data],function($message)use($data){
+                    $message->to($data['email'])->subject($data['title']);
+                });
+
+                $user = User::find($user[0]['id']);
+                $user->remember_token = $random;
+                $user->save();
+
+                return response()->json(['success' =>true,'msg' => 'Mil sent successfully.']);
+                
+            }
+            else{
+                return response()->json(['success' => false, 'msg' => 'User is not found!']);
+            }
+        }
+        else{
+            return response()->json(['success' => false,'msg' => 'User is not Authenticated']);
+        }
+    }
+
+
+    public function verifyConfirmMail($token){
+
+        $user = User::where('remember_token',$token)->get();
+        if(count($user) > 0){
+            $dateTime = Carbon::now()->format('Y-m-d H:i:s');
+           $user = User::find($user[0]['id']);
+           $user->remember_token = '';
+           $user->is_verified = 1;
+           $user->email_verified_at = $dateTime;
+           $user->save();
+           return "<h1>Email verified successfully.";
+        }
+        else{
+            return view('404');
+        }
     }
 
     /**

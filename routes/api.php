@@ -10,7 +10,7 @@ Route::group([
 
     'middleware' => 'api',
     'prefix' => 'auth'
-
+    
 ], function ($router) {
 
     Route::post('login',[AuthController::class,'login']);
@@ -18,5 +18,9 @@ Route::group([
     Route::post('logout',[AuthController::class,'logout']);
     Route::post('refresh',[AuthController::class,'refresh']);
     Route::post('me',[AuthController::class,'me']);
+    Route::get('/send-verify-mail/{email}',[AuthController::class,'sendVerifyMail']);
+
 
 });
+
+
