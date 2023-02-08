@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <div>
         <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
@@ -73,4 +73,4 @@ export default {
 
 <style scoped>
 
-</style> -->
+</style>
