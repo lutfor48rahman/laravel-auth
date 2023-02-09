@@ -7,7 +7,11 @@
 <script>
 export default {
     name: 'InventoryVueContact',
-
+    created(){
+        if(!User.loggedIn()){
+            this.$router.push({name:'/'})
+        }
+    },
     data() {
         return {
             
