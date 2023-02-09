@@ -5,7 +5,7 @@
   <div>
     <nav
       class="sb-topnav navbar navbar-expand navbar-dark bg-dark"
-      v-show="$route.path === '/' || $route.path === '/register' ? false : true"
+      v-show="$route.path === '/' || $route.path === '/signup' || $route.path === '/forget' ? false : true"
     >
       <!-- Navbar Brand-->
       <a class="navbar-brand ps-3" href="index.html">Tutor Provide</a>
@@ -75,7 +75,7 @@
       <div
         id="layoutSidenav_nav"
         v-show="
-          $route.path === '/' || $route.path === '/register' ? false : true
+          $route.path === '/' || $route.path === '/signup' || $route.path === '/forget' ? false : true
         "
       >
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
